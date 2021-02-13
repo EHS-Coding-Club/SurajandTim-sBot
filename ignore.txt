@@ -1,0 +1,65 @@
+
+// will only read files with .js
+const cmdFiles = fs.readdirSync('./files/').filter(file => file.endsWith('.js')); 
+
+// loops the folder for the commands to store in the collection 
+for(const file of cmdFiles) {
+
+    const cd = require(`./files/${file}`);
+
+    client.commands.set(cd.name, cd);
+
+} // for
+
+// sending a message to cmd that bot is online
+client.once('ready', () => {
+
+    console.log('online!');
+
+}) // client.on
+
+
+
+//sending a message.....
+client.on('message', message => {
+
+  
+
+    // splits the message so the bot can read the command 
+    const args = message.content.slice(prefix.length).split(/ +/);
+    
+    // reads as a lower case
+    const cmd = args.shift().toLowerCase();
+
+    // checking for commands
+    switch(cmd) {
+
+        case 'ping':
+        
+            client.commands.get('ping').execute(message, client, args);
+
+        break;
+
+        case 'embed':
+
+            client.commands.get('embed').execute(message, Discord, args);
+
+        break;
+
+        case 'clear':
+
+            client.commands.get('clear').execute(message, args);
+
+        break;
+
+    
+        default:
+
+            message.channel.send('no real command sent');
+
+        break;
+
+    } // switch
+     
+}) // client.on
+

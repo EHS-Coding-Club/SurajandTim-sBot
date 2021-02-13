@@ -1,4 +1,9 @@
 {
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#19331B",
+        "titleBar.activeBackground": "#234825",
+        "titleBar.activeForeground": "#F7FBF8"
+    },
     "extensions.ignoreRecommendations": true,
     "files.autoSave": "off",
     "typescript.tsc.autoDetect": "off",
